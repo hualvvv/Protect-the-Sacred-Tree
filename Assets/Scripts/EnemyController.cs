@@ -136,7 +136,10 @@ public class EnemyController : MonoBehaviour
     //元の移動速度に回復する。
     private void OriginalMoveSpeed()
     {
-        moveSpeed = originalMoveSpeed;
+        if (isFreezing == false)
+        {
+            moveSpeed = originalMoveSpeed;
+        }
     }
 
     //解凍。
