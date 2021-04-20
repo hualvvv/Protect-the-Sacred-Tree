@@ -53,5 +53,7 @@ public class Fallen : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = true;
         //カウントダウン表示をオフにする。
         countDown.SetActive(false);
+
+        player.GetComponent<PlayerController>().canShoot = true;
     }
 }

@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public AudioSource buttonAudio;
     //Audio。
     public AudioClip[] audioClip;
+    //BGM
+    public GameObject BGM;
 
 
     private void Awake()
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         enemySpawner = GetComponent<EnemySpawner>();
+        BGM= GameObject.FindGameObjectWithTag("Sound");
 
         //Cursorを隠す.
         Cursor.visible = false;
@@ -211,6 +214,7 @@ public class GameManager : MonoBehaviour
     public void OnButtonMenu()
     {
         sceneFader.FadeTo("MenuScene");
+        Destroy(BGM);
         buttonAudio.Play();
     }
 }

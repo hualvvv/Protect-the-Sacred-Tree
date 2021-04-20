@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public GameObject defaultPosition;
     //移動できますか。
     private bool canMove=true;
+    public bool canShoot = true;
     //敵とぶつかる時、敵とプレーヤーの間のオフセット。
     private Vector3 offset;
 
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //左バタンーのスキルの使用。
-        if (Input.GetMouseButtonDown(0)&& useSkill == false)
+        if (Input.GetMouseButtonDown(0)&& useSkill == false && canShoot == true)
         {
             PlayerBullet bullet = playerBulletPrefab.GetComponent<PlayerBullet>();
             bullet.damageType = PlayerBullet.E_DamageType.Fire;
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //右バタンーのスキルの使用。
-        if (Input.GetMouseButtonDown(1) && useSkill == false)
+        if (Input.GetMouseButtonDown(1) && useSkill == false && canShoot == true)
         {
             PlayerBullet bullet = playerBulletPrefab.GetComponent<PlayerBullet>();
             bullet.damageType = PlayerBullet.E_DamageType.ICE;
@@ -197,6 +198,7 @@ public class PlayerController : MonoBehaviour
     //プレーヤー死亡。
     public void Death()
     {
+        canShoot = false;
         //死亡動画とエフェクト。
         GetComponentInChildren<Animator>().SetTrigger("Death");
         GameObject effect =Instantiate(repelledEffect, transform.position, Quaternion.identity);
